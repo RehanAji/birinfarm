@@ -1,6 +1,6 @@
 <?= view('App\Views\headeradmin') ?>
 
-<body class=".bg-success">
+<body class="bg-primary">
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
             <main>
