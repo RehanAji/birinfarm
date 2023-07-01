@@ -9,6 +9,8 @@ class Ternakan extends BaseController
 {
 
 	protected $config;
+	protected $BrTernakModel;
+	protected $BrTernakRingModel;
 
 	public function __construct()
 	{
@@ -72,7 +74,7 @@ class Ternakan extends BaseController
 		$data = [
 			'title' => 'Form Tambah Data Produk'
 		];
-		return view(Be_Produk/create)
+		return view('Be_Produk/create');
 	}
 	public function getAyam()
 	{

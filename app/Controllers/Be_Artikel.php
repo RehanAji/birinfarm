@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\BrArtikelModel
+use App\Models\BrArtikelModel;
 
 class Be_Artikel extends BaseController
 {

@@ -20,9 +20,4 @@ class Produk extends BaseController
         $data = ["title" => "Produk"];
         return view('produk', $data);
     }
-    public function index(
-        
-    )
 }
-
-##hhgyghghghhghghgh

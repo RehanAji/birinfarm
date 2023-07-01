@@ -8,6 +8,7 @@ class Be_Produk extends BaseController
 {
 
     protected $config;
+    protected $brTernakModel;
 
     public function __construct()
     {

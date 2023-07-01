@@ -9,6 +9,8 @@ class Artikel extends BaseController
 
 	protected $config;
 
+	protected $BrArtikelModel;
+
 	public function __construct()
 	{
 		$this->config 	= config('App'); // bo settings
@@ -19,7 +21,7 @@ class Artikel extends BaseController
 	public function index()
 	{
 		$data['config'] = $this->config;
-		$data['data']	= $this->BrArtikelModel->allData();
+		$data['data']	= $this->BrArtikelModel->findAll();
 
 		return view('artikel/index', $data);
 	}
@@ -48,11 +50,18 @@ class Artikel extends BaseController
 
 		return view('artikel/detail', $data);
 	}
-	public function index()
-	{
-		$brArtikelFileModel = new BrArtikelFileModel();
-		$data['files'] = $brArtikelFileModel->allData();
+	// 	public function index()
+	// 	{
+	// 		$brArtikelFileModel = new BrArtikelFileModel();
+	// 		$data['files'] = $brArtikelFileModel->allData();
 
-		return view('dashboard', $data);
-	}
+	// 		return view('dashboard', $data);
+	// 	}
+	// 	public function index()
+	// 	{
+	// 		$model = new BrArtikelModel();
+	// 		$data['data'] = $model->findAll();
+
+	// 		return view('artikel/index', $data);
+	// 	}
 }
