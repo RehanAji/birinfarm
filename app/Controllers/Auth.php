@@ -10,11 +10,11 @@ class Auth extends BaseController
     public function index()
     {
         $data = ["title" => "login"];
-        return view('auth/index', $data);
+        return view('auth/index/', $data);
     }
     public function register()
     {
-        $data = ["title" => "login"];
-        return view('auth/register', $data);
+        $data = ["title" => "register"];
+        return view('auth/register/', $data);
     }
 }

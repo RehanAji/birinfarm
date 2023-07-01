@@ -1,9 +1,6 @@
 <?= $this->extend('layout_admin') ?>
 <!-- Konten anda -->
 <?= $this->section('main') ?>
-<div class="container-fluid px-4">
-    <p>DASHBOARD BIRINFARM
-    </p>
-</div>
+<p>INI VERIFIKASIPRODUK</p>
 <?= $this->endSection() ?>
 <!-- /.konten anda -->

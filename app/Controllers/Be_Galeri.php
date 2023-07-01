@@ -2,10 +2,11 @@
 
 namespace App\Controllers;
 
-use App\Controllers\BaseController;
+use App\Models\CoreRedirectModel;
 
-class Dashboard extends BaseController
+class Be_Galeri extends BaseController
 {
+
     protected $config;
 
     public function __construct()
@@ -13,11 +14,11 @@ class Dashboard extends BaseController
         $this->config     = config('App'); // bo settings
 
     }
+
     public function index()
     {
         $data['config'] = $this->config;
 
-        $data = ["title" => "ini dashboard"];
-        return view('Dashboard/index', $data);
+        return view('be_galeri/index', $data);
     }
 }

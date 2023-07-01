@@ -12,7 +12,7 @@ class BrArtikelModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['judul', 'isi', 'tanggal'];
 
     
     public function insertData($data = array()){
@@ -50,7 +50,7 @@ class BrArtikelModel extends Model
         return $result; 
     }
 
-    public function allData(){
+    public function findAll(){
         $query  = $this->db->query("SELECT * FROM " . $this->table); 
         $result = $query->getResult();
 

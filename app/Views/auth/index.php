@@ -1,4 +1,4 @@
-<?= view('App\Views\headeradmin') ?>
+<?= view('App\Views\layout_admin') ?>
 
 <body class="bg-primary">
     <div id="layoutAuthentication">

@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 
-class Dashboard extends BaseController
+class Admin extends BaseController
 {
     protected $config;
 
@@ -17,7 +17,7 @@ class Dashboard extends BaseController
     {
         $data['config'] = $this->config;
 
-        $data = ["title" => "ini dashboard"];
-        return view('Dashboard/index', $data);
+        $data = ["title" => "Detailadmin"];
+        return view('Detailadmin', $data);
     }
 }

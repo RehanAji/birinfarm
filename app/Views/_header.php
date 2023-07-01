@@ -1,7 +1,6 @@
-
 <div class="site-header__header-one-wrap">
     <div class="topbar-one">
-        <div class="topbar_bg" ></div> 
+        <div class="topbar_bg"></div>
         <div class="container">
             <div class="topbar-one__left">
                 <a href="mailto:dinnushobirin94@gmail.com"><i class="far fa-envelope"></i> dinnushobirin94@gmail.com</a>
@@ -9,7 +8,7 @@
             </div>
             <div class="topbar-one__middle">
                 <a href="index.html" class="main-nav__logo">
-                    <img src="<?= base_url()?>/assets/images/resources/logo.png" class="main-logo" alt="Birin Farm" />
+                    <img src="<?= base_url() ?>/assets/images/resources/logo.png" class="main-logo" alt="Birin Farm" />
                 </a>
             </div>
             <div class="topbar-one__right">
@@ -32,20 +31,22 @@
                 <div class="main-nav__main-navigation">
                     <ul class=" main-nav__navigation-box">
                         <li>
-                            <a href="<?=site_url('/')?>">Beranda</a>
+                            <a href="<?= site_url('Dashboard/') ?>">Dashboard</a>
                         </li>
                         <li>
-                            <a href="<?=site_url('/galeri/index')?>">Galeri</a>
+                            <a href="<?= site_url('/') ?>">Beranda</a>
                         </li>
                         <li>
-                            <a href="<?=site_url('/artikel/index')?>">Artikel</a>
+                            <a href="<?= site_url('/galeri/index') ?>">Galeri</a>
+                        </li>
+                        <li>
+                            <a href="<?= site_url('/artikel/index') ?>">Artikel</a>
                         </li>
                         <li class="dropdown ">
-                            <a href="<?=site_url('/ternakan/index')?>">Ternakan</a>
+                            <a href="<?= site_url('/ternakan/index') ?>">Ternakan</a>
                             <ul>
-                                <li><a href="<?=site_url('/ternakan/getAyam')?>">Ayam</a></li>
-                                <li><a href="<?=site_url('/ternakan/lele')?>">Lele</a></li>
-                                <li><a href="<?=site_url('/ternakan/kenari')?>">Kenari</a></li>
+                                <li><a href="<?= site_url('/ternakan/lele') ?>">lele</a></li>
+                                <li><a href="<?= site_url('/ternakan/kenari') ?>">Ayam</a></li>
                             </ul><!-- /.sub-menu -->
                         </li>
                     </ul>

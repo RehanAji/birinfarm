@@ -15,10 +15,11 @@
                 </a>
                 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="layout-static.html">Barang Keluar</a>
-                        <a class="nav-link" href="layout-sidenav-light.html">Barang Masuk</a>
-                        <a class="nav-link" href="layout-sidenav-light.html">Laporan</a>
-                        <a class="nav-link" href="layout-sidenav-light.html">Data Supplier</a>
+                        <a class="nav-link" href="<?= base_url('/be_home/') ?>">Home</a>
+                        <a class="nav-link" href="<?= base_url('/be_artikel/') ?>">Blog</a>
+                        <a class="nav-link" href="<?= base_url('/be_produk/') ?>">Produk</a>
+                        <a class="nav-link" href="<?= base_url('/be_galeri/') ?>l">Galeri</a>
+                        <a class="nav-link" href="<?= base_url('/be_detailproduk/') ?>">Verifikasi Produk</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">

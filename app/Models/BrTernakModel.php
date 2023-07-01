@@ -4,6 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
+
 class BrTernakModel extends Model
 {
     protected $DBGroup          = 'default';
@@ -16,14 +17,15 @@ class BrTernakModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [];
 
-
-    public function insertData($data = array()){
+    public function insertData($data = array())
+    {
         $this->db->table($this->table)->insert($data);
-        
+
         return encrypt_url($this->db->insertID());
     }
 
-    public function updateData($id, $data = array()){
+    public function updateData($id, $data = array())
+    {
         $id = decrypt_url($id);
 
         $this->db->table($this->table)->update($data, array(
@@ -33,27 +35,30 @@ class BrTernakModel extends Model
         return $this->db->affectedRows();
     }
 
-    public function deleteData($id){
+    public function deleteData($id)
+    {
         $id = decrypt_url($id);
         return $this->db->table($this->table)->delete(array(
             "id" => $id,
         ));
     }
 
-    public function allData(){
+    public function allData()
+    {
         $query = $this->db->query("SELECT * FROM " . $this->table);
 
         return $query->getResult();
     }
 
-    public function allDataKenari(){
+    public function allDataKenari()
+    {
         $query  = $this->db->query("SELECT a.* FROM " . $this->table . " a
                 -- LEFT JOIN br_ring b ON b.id=a.id_ring
                 WHERE a.id_jenis='1' 
                 ");
         $result = $query->getResult();
 
-        
+
         foreach ($result as $key => $value) {
             $query_ring  = $this->db->query("SELECT br.kode FROM br_ternak_ring btr
                 LEFT JOIN br_ring br ON br.id=btr.id_ring
@@ -65,21 +70,22 @@ class BrTernakModel extends Model
             if (!empty($result_ring)) {
                 $ring = "";
                 foreach ($result_ring as $key_ring => $value_ring) {
-                    $ring .=$value_ring->kode." ";
+                    $ring .= $value_ring->kode . " ";
                 }
                 $result[$key]->ring = $ring;
             }
 
             $result[$key]->id = encrypt_url($value->id);
-            
-            $result[$key]->foto_raw     = $value->foto; 
-            $result[$key]->foto         = img_data('ternak_foto/'.$value->foto); 
+
+            $result[$key]->foto_raw     = $value->foto;
+            $result[$key]->foto         = img_data('ternak_foto/' . $value->foto);
         }
 
         return $result;
     }
 
-    public function allDataKenariKerabat($id){
+    public function allDataKenariKerabat($id)
+    {
         $id = decrypt_url($id);
 
         $query  = $this->db->query("SELECT a.* FROM " . $this->table . " a
@@ -94,7 +100,7 @@ class BrTernakModel extends Model
             $query_babon  = $this->db->query("SELECT a.* FROM " . $this->table . " a
                 WHERE a.id_babon='$data->id_babon' AND a.id!='$id'
                 ");
-                
+
             $data_babon   = $query_babon->getResult();
 
             if (!empty($data_babon)) {
@@ -110,11 +116,11 @@ class BrTernakModel extends Model
                     if (!empty($result_ring)) {
                         $rings = "";
                         foreach ($result_ring as $key_ring => $value_ring) {
-                            $ring .=$value_ring->kode." ";
+                            $ring .= $value_ring->kode . " ";
                         }
                         $ring = $rings;
                     }
-                    
+
                     $data_kerabat_betina[] = array(
                         "id"        => encrypt_url($value->id),
                         "dari"      => "Betina",
@@ -123,19 +129,18 @@ class BrTernakModel extends Model
                         "kelamin"   => $value->kelamin,
                         "nama"      => $value->nama,
                         "deskripsi" => $value->deskripsi,
-                        "foto"      => img_data('ternak_foto/'.$value->foto),
+                        "foto"      => img_data('ternak_foto/' . $value->foto),
                         "foto_raw"  => $value->foto,
                     );
                 }
             }
-
         }
 
         if (!empty($data->id_jantan)) {
             $query_babon  = $this->db->query("SELECT a.* FROM " . $this->table . " a
                 WHERE a.id_jantan='$data->id_jantan' AND a.id!='$id'
                 ");
-                
+
             $data_jantan   = $query_babon->getResult();
 
             if (!empty($data_jantan)) {
@@ -151,11 +156,11 @@ class BrTernakModel extends Model
                     if (!empty($result_ring)) {
                         $rings = "";
                         foreach ($result_ring as $key_ring => $value_ring) {
-                            $ring .=$value_ring->kode." ";
+                            $ring .= $value_ring->kode . " ";
                         }
                         $ring = $rings;
                     }
-                    
+
                     $data_kerabat_jantan[] = array(
                         "id"        => encrypt_url($value->id),
                         "dari"      => "Jantan",
@@ -164,12 +169,11 @@ class BrTernakModel extends Model
                         "kelamin"   => $value->kelamin,
                         "nama"      => $value->nama,
                         "deskripsi" => $value->deskripsi,
-                        "foto"      => img_data('ternak_foto/'.$value->foto),
+                        "foto"      => img_data('ternak_foto/' . $value->foto),
                         "foto_raw"  => $value->foto,
                     );
                 }
             }
-
         }
 
         $data_kerabat = array_merge($data_kerabat_betina, $data_kerabat_jantan);
@@ -178,7 +182,8 @@ class BrTernakModel extends Model
         return $data_kerabat;
     }
 
-    public function detailData($id){
+    public function detailData($id)
+    {
         $id = decrypt_url($id);
         $query = $this->db->query("SELECT a.*,
                     babon.tipe AS 'babon_tipe',
@@ -191,32 +196,33 @@ class BrTernakModel extends Model
                 LEFT JOIN " . $this->table . " jantan ON jantan.id=a.id_jantan
                 LEFT JOIN br_ternak_ring btr ON btr.id_ternak=a.id
                 LEFT JOIN br_ring ring ON ring.id=btr.id_ring
-                WHERE a.id='".$id."' 
+                WHERE a.id='" . $id . "' 
                 ORDER BY a.id DESC
         ");
 
-        $data = $query->getResult()[0]; 
+        $data = $query->getResult()[0];
         $data->id           = encrypt_url($data->id);
         $data->id_babon     = encrypt_url($data->id_babon);
         $data->id_jantan    = encrypt_url($data->id_jantan);
         if (!empty($data->foto)) {
-            $data->foto_raw     = $data->foto; 
-            $data->foto         = img_data('ternak_foto/'.$data->foto); 
+            $data->foto_raw     = $data->foto;
+            $data->foto         = img_data('ternak_foto/' . $data->foto);
         }
 
         return $data;
     }
 
-    public function allDataKeturunan($id){
+    public function allDataKeturunan($id)
+    {
         $id = decrypt_url($id);
         $query = $this->db->query("SELECT a.*
                 FROM " . $this->table . " a
-                WHERE a.id_babon='".$id."' OR a.id_jantan='".$id."' 
+                WHERE a.id_babon='" . $id . "' OR a.id_jantan='" . $id . "' 
                 ORDER BY a.id DESC
         ");
 
         $data = $query->getResult();
-        
+
         foreach ($data as $key => $value) {
             $query_ring  = $this->db->query("SELECT br.kode FROM br_ternak_ring btr
                         LEFT JOIN br_ring br ON br.id=btr.id_ring
@@ -228,7 +234,7 @@ class BrTernakModel extends Model
             if (!empty($result_ring)) {
                 $rings = "";
                 foreach ($result_ring as $key_ring => $value_ring) {
-                    $ring .=$value_ring->kode." ";
+                    $ring .= $value_ring->kode . " ";
                 }
                 $ring = $rings;
             }
@@ -238,26 +244,25 @@ class BrTernakModel extends Model
             $data[$key]->id_jantan    = encrypt_url($value->id_jantan);
             $data[$key]->ring         = $ring;
             if (!empty($value->foto)) {
-                $data[$key]->foto_raw     = $value->foto; 
-                $data[$key]->foto         = img_data('ternak_foto/'.$value->foto); 
+                $data[$key]->foto_raw     = $value->foto;
+                $data[$key]->foto         = img_data('ternak_foto/' . $value->foto);
             }
         }
 
         return $data;
     }
 
-    public function allDataKenariInfo($id){
+    public function allDataKenariInfo($id)
+    {
         $id = decrypt_url($id);
         $query = $this->db->query("SELECT bri.nama AS info,a.nama
                 FROM br_ternak_info a
                 LEFT JOIN br_ref_info bri ON bri.id=a.id_ref_info
-                WHERE a.id_ternak='".$id."' 
+                WHERE a.id_ternak='" . $id . "' 
                 ORDER BY a.id DESC
         ");
 
-        $data = $query->getResult(); 
-        return  (!empty($data)) ? $data : array() ;
+        $data = $query->getResult();
+        return (!empty($data)) ? $data : array();
     }
-
-
 }
